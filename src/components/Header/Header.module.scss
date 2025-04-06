@@ -1,0 +1,33 @@
+@import '../../scss/variables.scss';
+
+.root {
+  display: flex;
+  justify-content: space-between;
+  background: $generalBg;
+  border-bottom: 1px solid $borderClr;
+  padding: 20px;
+  align-items: center;
+}
+
+.leftBlock {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+
+  .logoImg {
+    width: 30px;
+    margin: 0 15px 0 40px;
+  }
+}
+.menuItem {
+  width: 30px;
+  height: 30px;
+}
+.ava {
+  width: 30px;
+  border-radius: 50%;
+}

@@ -1,0 +1,48 @@
+@import '../../scss/variables.scss';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  border-right: 1px solid $borderClr;
+  position: fixed;
+  transition: transform 0.5s;
+  height: 100%;
+
+  .home,
+  .apply,
+  .activeCourses,
+  .createCourse {
+    display: flex;
+    gap: 40px;
+    padding: 14px 20px;
+    align-items: center;
+
+    &:hover {
+      background: $generalBgHover;
+    }
+  }
+}
+
+.createCourse {
+  border-bottom: 1px solid $borderClr;
+}
+
+.home {
+  margin-top: 15px;
+}
+
+.settings {
+  display: flex;
+  gap: 40px;
+  padding: 14px 20px;
+  align-items: center;
+
+  &:hover {
+    background: $generalBgHover;
+  }
+}
+
+.active {
+  background: $generalBgHover;
+}

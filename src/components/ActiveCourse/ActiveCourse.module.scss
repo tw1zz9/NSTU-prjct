@@ -1,0 +1,52 @@
+@import '../../scss/variables.scss';
+
+.root {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: $elemBg;
+  border: 1px solid $borderClr;
+}
+
+.title {
+  margin-bottom: 40px;
+  font-size: 20px;
+  color: $contrastTextClr;
+  font-weight: bold;
+}
+
+.details {
+  width: 350px;
+  height: 300px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  background: $generalBg;
+  border: 1px solid $borderClr;
+}
+
+.detailsTitle {
+  color: $contrastTextClr;
+  padding: 3px;
+  width: 100%;
+  border-bottom: 1px solid $contrastTextClr;
+  color: $contrastTextClr;
+  font-weight: bold;
+}
+
+.lesson,
+.group,
+.date,
+.place {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 3px 3px 3px;
+  border-bottom: 1px solid $borderClr;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}

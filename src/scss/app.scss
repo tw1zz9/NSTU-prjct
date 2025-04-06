@@ -1,0 +1,29 @@
+@import './variables.scss';
+
+.App {
+  overflow-x: hidden;
+  a {
+    text-decoration: none;
+  }
+}
+
+* {
+  font-family: Nunito, sans-serif;
+  font-size: 18px;
+  color: $textColor;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+body {
+  background: $generalBg;
+}
+
+.blockSvg {
+  width: 30px;
+  height: 30px;
+}

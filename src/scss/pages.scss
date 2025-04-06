@@ -1,0 +1,9 @@
+.root {
+  display: flex; // Use flexbox
+  flex-wrap: wrap; // Allow items to wrap to the next line
+  width: 100%;
+  transition: margin-left 0.5s;
+  padding: 15px 20px; // Add some padding around the content
+  box-sizing: border-box; // Include padding in the element's total width and height
+  gap: 30px;
+}
