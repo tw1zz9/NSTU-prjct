@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import '../scss/pages.scss';
 
 import Statistics from '../components/Statistics';
+import EventHome from '../components/EventHome';
+import NotifyHome from '../components/NotifyHome';
 
 const statElements = [
   {
@@ -31,7 +33,11 @@ const TeacherHome = ({ isSidePanelOpen }) => {
   const width = !isSidePanelOpen ? 'calc(100vw - 200px)' : '100vw';
 
   return (
-    <div className="root" style={{ marginLeft, width, transition: `margin-left 0.5s, width 0.5s` }}>
+    <div
+      className="root home"
+      style={{ marginLeft, width, transition: `margin-left 0.5s, width 0.5s` }}
+    >
+      <div className="titleHome">Статистика</div>
       <div
         className={`stats ${isSidePanelOpen ? 'center' : 'start'}`}
         style={{
@@ -47,6 +53,14 @@ const TeacherHome = ({ isSidePanelOpen }) => {
             isSidePanelOpen={isSidePanelOpen}
           />
         ))}
+      </div>
+      <div className="titleHome">Ближайшие события</div>
+      <div className="eventsHome">
+        <EventHome /> <EventHome />
+      </div>
+      <div className="titleHome">Уведомления</div>
+      <div className="notifysHome">
+        <NotifyHome /> <NotifyHome />
       </div>
     </div>
   );

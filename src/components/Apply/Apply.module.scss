@@ -1,0 +1,64 @@
+@import '../../scss/variables.scss';
+
+.root {
+  border: 1px solid $borderClr;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: $elemBg;
+  width: 370px;
+  border-radius: 10px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  color: $contrastTextClr;
+}
+
+.titleInfo,
+.details {
+  background: $generalBg;
+  border: 1px solid $borderClr;
+  padding: 15px;
+  border-radius: 10px;
+
+  * {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.id,
+.event,
+.group,
+.time {
+  padding: 5px 0;
+  border-bottom: 1px solid $borderClr;
+  margin-bottom: 15px;
+}
+
+.detailsTitle {
+  padding: 5px 0;
+  border-bottom: 1px solid $contrastTextClr;
+  font-weight: bold;
+  font-size: 20px;
+  color: $contrastTextClr;
+  margin-bottom: 15px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+
+  * {
+    background: $btnColor;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    width: 170px;
+    height: 45px;
+    font-weight: bold;
+  }
+}
