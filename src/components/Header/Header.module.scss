@@ -7,6 +7,9 @@
   border-bottom: 1px solid $borderClr;
   padding: 20px;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .leftBlock {

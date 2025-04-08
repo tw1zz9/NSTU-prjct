@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header onClickSidePanel={handleClickSidePanel} />
+      <Header className="header" onClickSidePanel={handleClickSidePanel} />
       <SidePanel isSidePanelOpen={isSidePanelOpen} />
       <Routes>
         <Route path="/" element={<TeacherHome isSidePanelOpen={isSidePanelOpen} />} />
