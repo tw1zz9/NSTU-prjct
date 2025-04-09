@@ -27,14 +27,14 @@ const TeacherCreateCourse = ({ isSidePanelOpen }) => {
         className={`create_event ${isSidePanelOpen ? 'center' : 'start'}`}
         onSubmit={handleSubmit}
       >
-        <div className="create_event_title">Создание курса</div>
+        <div className="create_event_title">Создание мероприятия</div>
         <div className="create_event_desc">
-          Заполните форму, чтобы создать новый курс для студентов.
+          Заполните форму, чтобы создать новое мероприятие для студентов.
         </div>
 
         <div className="create_event_name create_event_el">
           <label className="create_event_nameText" htmlFor="eventName">
-            Название курса
+            Название мероприятия
           </label>
           <input
             className="create_event_nameEl"

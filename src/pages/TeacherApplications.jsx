@@ -8,7 +8,7 @@ const TeacherApplications = ({ isSidePanelOpen }) => {
   const width = !isSidePanelOpen ? 'calc(100vw - 200px)' : '100vw';
   return (
     <div className="root" style={{ marginLeft, width, transition: `.5s` }}>
-      <Apply />
+      <Apply /> <Apply />
     </div>
   );
 };

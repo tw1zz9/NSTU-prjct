@@ -10,6 +10,17 @@
   gap: 30px;
 }
 
+.eventsHome,
+.notifysHome {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  transition: margin-left 0.5s, width 0.5s;
+  box-sizing: border-box;
+  gap: 30px;
+  width: 100%;
+}
+
 .home {
   display: flex;
   flex-direction: column;

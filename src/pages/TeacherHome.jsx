@@ -4,6 +4,7 @@ import '../scss/pages.scss';
 import Statistics from '../components/Statistics';
 import EventHome from '../components/EventHome';
 import NotifyHome from '../components/NotifyHome';
+import ActiveCourse from '../components/ActiveCourse';
 
 const statElements = [
   {
@@ -56,7 +57,10 @@ const TeacherHome = ({ isSidePanelOpen }) => {
       </div>
       <div className="titleHome">Ближайшие события</div>
       <div className="eventsHome">
-        <EventHome /> <EventHome />
+        <EventHome isSidePanelOpen={isSidePanelOpen} />{' '}
+        <EventHome isSidePanelOpen={isSidePanelOpen} />{' '}
+        <EventHome isSidePanelOpen={isSidePanelOpen} />{' '}
+        <EventHome isSidePanelOpen={isSidePanelOpen} />
       </div>
       <div className="titleHome">Уведомления</div>
       <div className="notifysHome">
