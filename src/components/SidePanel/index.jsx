@@ -3,6 +3,7 @@ import styles from './SidePanel.module.scss';
 import '../../scss/app.scss';
 
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const SidePanel = ({ isSidePanelOpen }) => {
   const [selected, setSelected] = React.useState('');
@@ -10,10 +11,12 @@ const SidePanel = ({ isSidePanelOpen }) => {
   const handleSelect = (item) => {
     setSelected(item);
   };
+  const { role } = useSelector((state) => state.user);
+  console.log(role);
 
   return (
     <div style={{ transform: isSidePanelOpen ? `translateX(-100%)` : '' }} className={styles.root}>
-      <Link to="/" onClick={() => handleSelect('home')}>
+      <Link to={`/${role}/home`} onClick={() => handleSelect('home')}>
         <div className={`${styles.home} ${selected === 'home' ? styles.active : ''}`}>
           <div className={styles.homeIcon}>
             <div className="blockSvg">
@@ -35,7 +38,7 @@ const SidePanel = ({ isSidePanelOpen }) => {
         </div>
       </Link>
 
-      <Link to="/applications" onClick={() => handleSelect('apply')}>
+      <Link to={`/${role}/applications`} onClick={() => handleSelect('apply')}>
         <div className={`${styles.apply} ${selected === 'apply' ? styles.active : ''}`}>
           <div className={styles.applyIcon}>
             <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 24 24">
@@ -55,7 +58,7 @@ const SidePanel = ({ isSidePanelOpen }) => {
         </div>
       </Link>
 
-      <Link to="/active-courses" onClick={() => handleSelect('activeCourses')}>
+      <Link to={`/${role}/active-courses`} onClick={() => handleSelect('activeCourses')}>
         <div
           className={`${styles.activeCourses} ${selected === 'activeCourses' ? styles.active : ''}`}
         >
@@ -78,29 +81,53 @@ const SidePanel = ({ isSidePanelOpen }) => {
         </div>
       </Link>
 
-      <Link to="/create-event" onClick={() => handleSelect('createCourse')}>
-        <div
-          className={`${styles.createCourse} ${selected === 'createCourse' ? styles.active : ''}`}
-        >
-          <div className={styles.createCourseIcon}>
-            <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 24 24">
-              <g
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.7"
-              >
-                <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
-                <path d="M12 8v8m-4-4h8" />
-              </g>
-            </svg>
+      {role === 'teacher' ? (
+        <Link to="/teacher/create-event" onClick={() => handleSelect('createCourse')}>
+          <div
+            className={`${styles.createCourse} ${selected === 'createCourse' ? styles.active : ''}`}
+          >
+            <div className={styles.createCourseIcon}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 24 24">
+                <g
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.7"
+                >
+                  <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                  <path d="M12 8v8m-4-4h8" />
+                </g>
+              </svg>
+            </div>
+            <div className={styles.createCourseText}>Создание мероприятия</div>
           </div>
-          <div className={styles.createCourseText}>Создание мероприятия</div>
-        </div>
-      </Link>
+        </Link>
+      ) : (
+        <Link to="/student/create-event" onClick={() => handleSelect('createCourse')}>
+          <div
+            className={`${styles.createCourse} ${selected === 'createCourse' ? styles.active : ''}`}
+          >
+            <div className={styles.createCourseIcon}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 24 24">
+                <g
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.7"
+                >
+                  <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                  <path d="M12 8v8m-4-4h8" />
+                </g>
+              </svg>
+            </div>
+            <div className={styles.createCourseText}>Предложить мероприятие</div>
+          </div>
+        </Link>
+      )}
 
-      <Link to="/settings" onClick={() => handleSelect('settings')}>
+      <Link to={`/${role}/settings`} onClick={() => handleSelect('settings')}>
         <div className={`${styles.settings} ${selected === 'settings' ? styles.active : ''}`}>
           <div className={styles.settingsIcon}>
             <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 24 24">

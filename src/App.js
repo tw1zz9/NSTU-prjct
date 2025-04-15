@@ -1,42 +1,31 @@
 import { Routes, Route } from 'react-router-dom';
 import React, { useState } from 'react';
 import './scss/app.scss';
+import { Navigate } from 'react-router-dom';
 
+import LoginPage from './pages/LoginPage.jsx';
 import TeacherHome from './pages/TeacherHome';
 import TeacherApplications from './pages/TeacherApplications';
 import TeacherActiveCourses from './pages/TeacherActiveCourses.jsx';
 import TeacherCreateEvent from './pages/TeacherCreateEvent.jsx';
 import TeacherSettings from './pages/TeacherSettings.jsx';
 
-import Header from './components/Header';
-import SidePanel from './components/SidePanel';
+import PrivateRoute from './components/PrivateRoute.jsx';
 
 function App() {
-  const [isSidePanelOpen, setIsSidePanelOpen] = useState(true);
-
-  const handleClickSidePanel = () => {
-    setIsSidePanelOpen(!isSidePanelOpen);
-  };
-
   return (
     <div className="App">
-      <Header className="header" onClickSidePanel={handleClickSidePanel} />
-      <SidePanel isSidePanelOpen={isSidePanelOpen} />
       <Routes>
-        <Route path="/" element={<TeacherHome isSidePanelOpen={isSidePanelOpen} />} />
-        <Route
-          path="/applications"
-          element={<TeacherApplications isSidePanelOpen={isSidePanelOpen} />}
-        />
-        <Route
-          path="/active-courses"
-          element={<TeacherActiveCourses isSidePanelOpen={isSidePanelOpen} />}
-        />
-        <Route
-          path="/create-event"
-          element={<TeacherCreateEvent isSidePanelOpen={isSidePanelOpen} />}
-        />
-        <Route path="/settings" element={<TeacherSettings isSidePanelOpen={isSidePanelOpen} />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route element={<PrivateRoute requiredRole="teacher" />}>
+          <Route path="/teacher/home" element={<TeacherHome />} />
+          <Route path="/teacher/applications" element={<TeacherApplications />} />
+          <Route path="/teacher/active-courses" element={<TeacherActiveCourses />} />
+          <Route path="/teacher/create-event" element={<TeacherCreateEvent />} />
+          <Route path="/teacher/settings" element={<TeacherSettings />} />
+        </Route>
+        {/* <Route path="*" element={<Navigate to="/login" />} /> */}
       </Routes>
     </div>
   );

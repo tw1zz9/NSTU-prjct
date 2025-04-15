@@ -5,12 +5,17 @@ import ava from '../../assets/img/ava.jpg';
 
 import styles from './Header.module.scss';
 import '../../scss/app.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleSidePanel } from '../../redux/slices/sidePanelSlice';
 
-const Header = ({ onClickSidePanel }) => {
+const Header = () => {
+  const dispatch = useDispatch();
+  const isOpen = useSelector((state) => state.sidePanel.isOpen);
+
   return (
     <div className={styles.root}>
       <div className={styles.leftBlock}>
-        <div onClick={onClickSidePanel} className={styles.menu}>
+        <div onClick={() => dispatch(toggleSidePanel())} className={styles.menu}>
           <div className={styles.menuItem}>
             <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 24 24">
               <path

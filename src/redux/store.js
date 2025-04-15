@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import formReducer from './slices/formSlice';
+import userReducer from './slices/userSlice';
+import sidePanelReducer from './slices/sidePanelSlice';
 
-export default configureStore({
+export const store = configureStore({
   reducer: {
-    form: formReducer,
+    user: userReducer,
+    sidePanel: sidePanelReducer,
   },
 });
