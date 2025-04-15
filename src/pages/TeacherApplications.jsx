@@ -4,7 +4,7 @@ import '../scss/pages.scss';
 import Apply from '../components/Apply';
 import MainLayout from '../layouts/MainLayout';
 
-const TeacherApplications = ({ isSidePanelOpen }) => {
+const TeacherApplications = () => {
   return (
     <MainLayout className="root">
       <Apply /> <Apply />

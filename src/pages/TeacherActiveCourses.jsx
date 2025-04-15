@@ -1,17 +1,16 @@
 import React from 'react';
 import '../scss/pages.scss';
+import MainLayout from '../layouts/MainLayout';
 
 import ActiveCourse from '../components/ActiveCourse';
 
-const TeacherActiveCourses = ({ isSidePanelOpen }) => {
-  const marginLeft = !isSidePanelOpen ? '352px' : '0';
-  const width = !isSidePanelOpen ? 'calc(100vw - 200px)' : '100vw';
+const TeacherActiveCourses = () => {
   return (
-    <div className="root" style={{ marginLeft, width, transition: `.5s` }}>
+    <MainLayout className="root">
       <ActiveCourse />
       <ActiveCourse />
       <ActiveCourse />
-    </div>
+    </MainLayout>
   );
 };
 

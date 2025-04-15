@@ -10,6 +10,8 @@ import TeacherActiveCourses from './pages/TeacherActiveCourses.jsx';
 import TeacherCreateEvent from './pages/TeacherCreateEvent.jsx';
 import TeacherSettings from './pages/TeacherSettings.jsx';
 
+import StudentHome from './pages/StudentHome.jsx';
+
 import PrivateRoute from './components/PrivateRoute.jsx';
 
 function App() {
@@ -25,7 +27,11 @@ function App() {
           <Route path="/teacher/create-event" element={<TeacherCreateEvent />} />
           <Route path="/teacher/settings" element={<TeacherSettings />} />
         </Route>
-        {/* <Route path="*" element={<Navigate to="/login" />} /> */}
+
+        <Route element={<PrivateRoute requiredRole="student" />}>
+          <Route path="/student/home" element={<StudentHome />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </div>
   );

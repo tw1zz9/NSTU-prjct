@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import '../scss/pages.scss';
+import MainLayout from '../layouts/MainLayout';
 
 const TeacherCreateCourse = ({ isSidePanelOpen }) => {
-  const marginLeft = !isSidePanelOpen ? '352px' : '0';
-  const width = !isSidePanelOpen ? 'calc(100vw - 200px)' : '100vw';
-
   const [formData, setFormData] = useState({
     name: '',
     time: '',
@@ -22,9 +20,9 @@ const TeacherCreateCourse = ({ isSidePanelOpen }) => {
   };
 
   return (
-    <div style={{ marginLeft, width, transition: `.5s` }}>
+    <MainLayout>
       <form
-        className={`create_event ${isSidePanelOpen ? 'center' : 'start'}`}
+        // className={`create_event ${isSidePanelOpen ? 'center' : 'start'}`}
         onSubmit={handleSubmit}
       >
         <div className="create_event_title">Создание мероприятия</div>
@@ -83,7 +81,7 @@ const TeacherCreateCourse = ({ isSidePanelOpen }) => {
           </button>
         </div>
       </form>
-    </div>
+    </MainLayout>
   );
 };
 
