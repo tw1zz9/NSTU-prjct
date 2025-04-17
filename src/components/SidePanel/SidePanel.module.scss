@@ -12,7 +12,8 @@
   .home,
   .apply,
   .activeCourses,
-  .createCourse {
+  .createCourse,
+  .calendar {
     display: flex;
     gap: 40px;
     padding: 14px 20px;
@@ -24,15 +25,12 @@
   }
 }
 
-.createCourse {
-  border-bottom: 1px solid $borderClr;
-}
-
 .home {
   margin-top: 15px;
 }
 
 .settings {
+  border-top: 1px solid $borderClr;
   display: flex;
   gap: 40px;
   padding: 14px 20px;

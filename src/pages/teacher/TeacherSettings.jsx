@@ -1,6 +1,6 @@
 import React from 'react';
-import '../scss/pages.scss';
-import MainLayout from '../layouts/MainLayout';
+import '../../scss/pages.scss';
+import MainLayout from '../../layouts/MainLayout';
 
 const TeacherSettings = ({ isSidePanelOpen }) => {
   const marginLeft = !isSidePanelOpen ? '352px' : '0';

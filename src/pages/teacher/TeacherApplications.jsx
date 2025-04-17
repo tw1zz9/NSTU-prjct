@@ -1,8 +1,8 @@
 import React from 'react';
-import '../scss/pages.scss';
+import '../../scss/pages.scss';
 
-import Apply from '../components/Apply';
-import MainLayout from '../layouts/MainLayout';
+import Apply from '../../components/Apply';
+import MainLayout from '../../layouts/MainLayout';
 
 const TeacherApplications = () => {
   return (

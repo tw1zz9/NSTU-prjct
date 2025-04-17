@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import '../scss/pages.scss';
+import '../../scss/pages.scss';
 
-import Statistics from '../components/Statistics';
-import EventHome from '../components/EventHome';
-import NotifyHome from '../components/NotifyHome';
-import ActiveCourse from '../components/ActiveCourse';
-import MainLayout from '../layouts/MainLayout';
+import Statistics from '../../components/Statistics';
+import EventHome from '../../components/EventHome';
+import NotifyHome from '../../components/NotifyHome';
+import ActiveCourse from '../../components/ActiveCourse';
+import MainLayout from '../../layouts/MainLayout';
 
 const statElements = [
   {

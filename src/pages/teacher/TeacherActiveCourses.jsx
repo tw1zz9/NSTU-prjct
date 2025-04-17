@@ -1,8 +1,8 @@
 import React from 'react';
-import '../scss/pages.scss';
-import MainLayout from '../layouts/MainLayout';
+import '../../scss/pages.scss';
+import MainLayout from '../../layouts/MainLayout';
 
-import ActiveCourse from '../components/ActiveCourse';
+import ActiveCourse from '../../components/ActiveCourse';
 
 const TeacherActiveCourses = () => {
   return (
