@@ -1,0 +1,41 @@
+@import '../../scss/variables.scss';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 200px;
+  height: 150px;
+  padding: 5px;
+  border-bottom: 1px solid $borderClr;
+}
+
+.lecture {
+  border-left: 10px solid $lecture;
+
+  .time,
+  .type {
+    color: $lecture;
+    font-weight: bold;
+  }
+}
+
+.practice {
+  border-left: 10px solid $practice;
+
+  .time,
+  .type {
+    color: $practice;
+    font-weight: bold;
+  }
+}
+
+.upper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lower {
+  display: flex;
+  justify-content: space-between;
+}

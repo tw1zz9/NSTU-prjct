@@ -9,13 +9,16 @@ const MainLayout = ({ children }) => {
   const isSidePanelOpen = useSelector((state) => state.sidePanel.isOpen);
 
   const marginLeft = !isSidePanelOpen ? '352px' : '0';
-  const width = !isSidePanelOpen ? 'calc(100vw - 200px)' : '100vw';
 
   return (
     <div>
       <Header className="header" />
       <SidePanel isSidePanelOpen={isSidePanelOpen} />
-      <main isSidePanelOpen={isSidePanelOpen} style={{ marginLeft, width, transition: `.5s` }}>
+      <main
+        className="main_layout"
+        isSidePanelOpen={isSidePanelOpen}
+        style={{ marginLeft, transition: `.5s` }}
+      >
         {children}
       </main>
     </div>
