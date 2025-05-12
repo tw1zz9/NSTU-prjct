@@ -1,8 +1,6 @@
 import { useSelector } from 'react-redux';
 import Header from '../components/Header';
 import SidePanel from '../components/SidePanel';
-import { Navigate } from 'react-router-dom';
-import { useState } from 'react';
 import '../scss/app.scss';
 
 const MainLayout = ({ children }) => {
@@ -11,7 +9,7 @@ const MainLayout = ({ children }) => {
   const marginLeft = !isSidePanelOpen ? '352px' : '0';
 
   return (
-    <div>
+    <div className="layout">
       <Header className="header" />
       <SidePanel isSidePanelOpen={isSidePanelOpen} />
       <main

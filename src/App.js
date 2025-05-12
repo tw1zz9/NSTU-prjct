@@ -4,9 +4,9 @@ import './scss/app.scss';
 import { Navigate } from 'react-router-dom';
 
 import LoginPage from './pages/LoginPage.jsx';
-import TeacherHome from './pages/teacher/TeacherHome.jsx';
+import TeacherHome from './pages/teacher/TeacherHome/index.jsx';
 import TeacherApplications from './pages/teacher/TeacherApplications.jsx';
-import TeacherActiveCourses from './pages/teacher/TeacherActiveCourses.jsx';
+import TeacherActiveCourses from './pages/teacher/TeacherActiveCourses/index.jsx';
 import TeacherCreateEvent from './pages/teacher/TeacherCreateEvent.jsx';
 import TeacherSettings from './pages/teacher/TeacherSettings.jsx';
 import TeacherCalendar from './pages/teacher/TeacherCalendar.jsx';

@@ -1,7 +1,6 @@
 @import './variables.scss';
 
 .App {
-  overflow-x: hidden;
   a {
     text-decoration: none;
   }
@@ -28,4 +27,8 @@ body {
 .blockSvg {
   width: 30px;
   height: 30px;
+}
+
+.layout {
+  position: relative;
 }

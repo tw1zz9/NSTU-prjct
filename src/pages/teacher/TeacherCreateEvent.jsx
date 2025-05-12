@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import '../../scss/pages.scss';
 import MainLayout from '../../layouts/MainLayout';
+import { addCourse } from '../../redux/slices/coursesSlice';
+import { useDispatch } from 'react-redux';
 
-const TeacherCreateCourse = ({ isSidePanelOpen }) => {
+const TeacherCreateCourse = () => {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
-    name: '',
+    subject: '',
+    group: '',
+    date: '',
     time: '',
     place: '',
   });
@@ -16,70 +21,63 @@ const TeacherCreateCourse = ({ isSidePanelOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Форма отправлена:', formData);
+
+    const courseData = {
+      subject: formData.subject,
+      group: formData.group,
+      date: `${formData.date} ${formData.time}`,
+      place: formData.place,
+    };
+
+    dispatch(addCourse(courseData));
+
+    // Очистка формы
+    setFormData({
+      subject: '',
+      group: '',
+      date: '',
+      time: '',
+      place: '',
+    });
   };
 
   return (
     <MainLayout>
-      <form
-        // className={`create_event ${isSidePanelOpen ? 'center' : 'start'}`}
-        onSubmit={handleSubmit}
-      >
-        <div className="create_event_title">Создание мероприятия</div>
-        <div className="create_event_desc">
-          Заполните форму, чтобы создать новое мероприятие для студентов.
-        </div>
+      <form onSubmit={handleSubmit} className="create-course-form">
+        <h2>Создание нового курса</h2>
 
-        <div className="create_event_name create_event_el">
-          <label className="create_event_nameText" htmlFor="eventName">
-            Название мероприятия
-          </label>
+        <div className="form-group">
+          <label>Предмет:</label>
           <input
-            className="create_event_nameEl"
             type="text"
-            id="eventName"
-            name="name"
-            value={formData.name}
+            name="subject"
+            value={formData.subject}
             onChange={handleChange}
             required
           />
         </div>
 
-        <div className="create_event_time create_event_el">
-          <label className="create_event_timeText" htmlFor="eventTime">
-            Дата и время
-          </label>
-          <input
-            className="create_event_timeEl"
-            type="datetime-local"
-            id="eventTime"
-            name="time"
-            value={formData.time}
-            onChange={handleChange}
-            required
-          />
+        <div className="form-group">
+          <label>Группа:</label>
+          <input type="text" name="group" value={formData.group} onChange={handleChange} required />
         </div>
 
-        <div className="create_event_place create_event_el">
-          <label className="create_event_placeText" htmlFor="eventPlace">
-            Место проведения
-          </label>
-          <input
-            className="create_event_placeEl"
-            type="text"
-            id="eventPlace"
-            name="place"
-            value={formData.place}
-            onChange={handleChange}
-            required
-          />
+        <div className="form-group">
+          <label>Дата:</label>
+          <input type="date" name="date" value={formData.date} onChange={handleChange} required />
         </div>
 
-        <div className="create_event_submitButton">
-          <button type="submit" className="create_event_submitButtonEl">
-            Создать мероприятие
-          </button>
+        <div className="form-group">
+          <label>Время:</label>
+          <input type="time" name="time" value={formData.time} onChange={handleChange} required />
         </div>
+
+        <div className="form-group">
+          <label>Место:</label>
+          <input type="text" name="place" value={formData.place} onChange={handleChange} required />
+        </div>
+
+        <button type="submit">Создать курс</button>
       </form>
     </MainLayout>
   );

@@ -9,7 +9,10 @@
   align-items: center;
   position: sticky;
   top: 0;
+  width: 100%;
+  height: 70px;
   z-index: 1000;
+  box-sizing: border-box;
 }
 
 .leftBlock {
@@ -26,11 +29,23 @@
     margin: 0 15px 0 40px;
   }
 }
+
+.menu {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
 .menuItem {
   width: 30px;
   height: 30px;
 }
+
 .ava {
   width: 30px;
+  height: 30px;
   border-radius: 50%;
+  object-fit: cover;
 }

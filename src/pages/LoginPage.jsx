@@ -8,12 +8,12 @@ const LoginPage = () => {
 
   const handleTeacherLogin = () => {
     dispatch(loginTeacher());
-    navigate('/teacher/home'); // Перенаправляем в ЛК преподавателя
+    navigate('/teacher/home');
   };
 
   const handleStudentLogin = () => {
     dispatch(loginStudent());
-    navigate('/student/home'); // Перенаправляем в ЛК студента
+    navigate('/student/home');
   };
 
   return (
