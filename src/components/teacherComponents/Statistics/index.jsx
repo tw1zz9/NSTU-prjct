@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Statistics.module.scss';
 
-const Statistics = ({ count, text, isSidePanelOpen }) => {
+const Statistics = ({ count, text }) => {
   return (
     <div className={styles.root}>
       <div className={styles.count}>{count}</div>

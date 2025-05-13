@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './ActiveCourse.module.scss';
 
 const ActiveCourse = ({ id, name, group, time, place, onEdit, onEnd }) => {
-  // Функция для форматирования даты и времени
   const formatDateTime = (dateTime) => {
     if (!dateTime) return 'Не указано';
 
@@ -16,7 +15,7 @@ const ActiveCourse = ({ id, name, group, time, place, onEdit, onEnd }) => {
         month: 'numeric',
       });
     } catch {
-      return dateTime; // Возвращаем как есть, если не удалось распарсить
+      return dateTime;
     }
   };
 

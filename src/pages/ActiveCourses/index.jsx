@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeCourse, updateCourse } from '../../../redux/slices/coursesSlice';
-import MainLayout from '../../../layouts/MainLayout';
-import ActiveCourse from '../../../components/ActiveCourse';
-import CourseModal from '../../../components/CourseModal'; // Предполагаем, что у вас есть компонент модалки
+import { removeCourse, updateCourse } from '../../redux/slices/coursesSlice';
+import MainLayout from '../../layouts/MainLayout';
+import ActiveCourse from '../../components/teacherComponents/ActiveCourse';
+import CourseModal from '../../components/CourseModal';
 import styles from './TeacherActiveCourses.module.scss';
 
 const TeacherActiveCourses = () => {
@@ -26,10 +26,8 @@ const TeacherActiveCourses = () => {
   };
 
   const handleEnd = (courseId) => {
-    // Подтверждение перед удалением
     if (window.confirm('Вы уверены, что хотите завершить этот курс?')) {
       dispatch(removeCourse(courseId));
-      // Здесь можно добавить вызов API для уведомления бэкенда
     }
   };
 
@@ -45,7 +43,6 @@ const TeacherActiveCourses = () => {
       </MainLayout>
     );
   }
-  console.log(activeCourses);
 
   return (
     <MainLayout>

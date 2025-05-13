@@ -141,20 +141,18 @@ const SidePanel = ({ isSidePanelOpen }) => {
 
   return (
     <div style={{ transform: isSidePanelOpen ? `translateX(-100%)` : '' }} className={styles.root}>
-      {menuItems
-        .filter((item) => item.availableFor.includes(role))
-        .map((item) => (
-          <Link key={item.id} to={`/${role}/${item.path}`} onClick={() => handleSelect(item.id)}>
-            <div className={`${styles[item.id]} ${selected === item.id ? styles.active : ''}`}>
-              <div className={styles[`${item.id}Icon`]}>
-                <div className="blockSvg">{item.icon}</div>
-              </div>
-              <div className={styles[`${item.id}Text`]}>
-                {typeof item.text === 'object' ? item.text[role] : item.text}
-              </div>
+      {menuItems.map((item) => (
+        <Link key={item.id} to={`/${item.path}`} onClick={() => handleSelect(item.id)}>
+          <div className={`${styles[item.id]} ${selected === item.id ? styles.active : ''}`}>
+            <div className={styles[`${item.id}Icon`]}>
+              <div className="blockSvg">{item.icon}</div>
             </div>
-          </Link>
-        ))}
+            <div className={styles[`${item.id}Text`]}>
+              {typeof item.text === 'object' ? item.text[role] : item.text}
+            </div>
+          </div>
+        </Link>
+      ))}
     </div>
   );
 };

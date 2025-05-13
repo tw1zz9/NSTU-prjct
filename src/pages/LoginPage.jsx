@@ -8,12 +8,12 @@ const LoginPage = () => {
 
   const handleTeacherLogin = () => {
     dispatch(loginTeacher());
-    navigate('/teacher/home');
+    navigate('/home');
   };
 
   const handleStudentLogin = () => {
     dispatch(loginStudent());
-    navigate('/student/home');
+    navigate('/home');
   };
 
   return (
