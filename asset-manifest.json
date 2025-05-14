@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/tw1zz9/NSTU-prjct/static/css/main.b0fbfed2.css",
+    "main.js": "/tw1zz9/NSTU-prjct/static/js/main.b22293db.js",
+    "static/media/ava.jpg": "/tw1zz9/NSTU-prjct/static/media/ava.fc7196d84f6bbec02f91.jpg",
+    "static/media/logo.png": "/tw1zz9/NSTU-prjct/static/media/logo.fd88e818920875d58842.png",
+    "index.html": "/tw1zz9/NSTU-prjct/index.html",
+    "main.b0fbfed2.css.map": "/tw1zz9/NSTU-prjct/static/css/main.b0fbfed2.css.map",
+    "main.b22293db.js.map": "/tw1zz9/NSTU-prjct/static/js/main.b22293db.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b0fbfed2.css",
+    "static/js/main.b22293db.js"
+  ]
+}
