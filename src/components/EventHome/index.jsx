@@ -1,28 +1,37 @@
 import React from 'react';
 import styles from './EventHome.module.scss';
 
-const EventHome = ({ isSidePanelOpen }) => {
+const EventHome = ({ title, group, date, place, stretchable }) => {
+  // Форматируем дату для показа, например: "пн 12:00"
+  const formattedDate = date
+    ? new Date(date).toLocaleDateString('ru-RU', {
+        weekday: 'short',
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+    : '';
+
   return (
     <div
       className={styles.root}
-      style={!isSidePanelOpen ? { width: '220px' } : { width: 'calc(25% - 55px)' }}
+      style={!stretchable ? { width: '220px' } : { width: 'calc(25% - 55px)' }}
     >
-      <div className={styles.title}>Мат. анализ</div>
+      <div className={styles.title}>{title}</div>
 
       <div className={styles.details}>
         <div className={styles.detailsEl}>
           <div>Группа:</div>
-          <div>АВТ-412</div>
+          <div>{group}</div>
         </div>
 
         <div className={styles.detailsEl}>
           <div>Дата:</div>
-          <div>пн 12:00</div>
+          <div>{formattedDate}</div>
         </div>
 
         <div className={styles.detailsEl}>
           <div>Место:</div>
-          <div>7-123</div>
+          <div>{place}</div>
         </div>
       </div>
     </div>

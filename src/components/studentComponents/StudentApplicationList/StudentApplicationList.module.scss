@@ -1,0 +1,107 @@
+@import '../../../scss/variables.scss';
+
+.container {
+  max-width: 1000px; // ограничиваем максимальную ширину 1000px
+  width: 100%; // чтобы контейнер мог сжиматься на узких экранах
+  margin: 20px auto; // сверху и снизу 20px, по центру по горизонтали
+  padding: 30px;
+  background: $elemBg;
+  border: 1px solid $borderClr;
+  border-radius: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: $primaryTextClr;
+  margin: 0;
+}
+
+.counter {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: $secondTextClr;
+}
+
+.applicationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.hint {
+  max-width: 400px;
+  padding: 12px 16px;
+  background-color: lighten($contrastTextClr, 40%);
+  color: $contrastTextClr;
+  border-radius: 8px;
+  border: 1px solid $contrastTextClr;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Адаптивность */
+
+@media (max-width: 900px) {
+  .container {
+    padding: 15px 12px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .counter {
+    font-size: 1rem;
+  }
+
+  .applicationGrid {
+    gap: 16px;
+  }
+
+  .hint {
+    max-width: 100%;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px 10px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .counter {
+    font-size: 0.9rem;
+  }
+
+  .applicationGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .hint {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+  }
+}

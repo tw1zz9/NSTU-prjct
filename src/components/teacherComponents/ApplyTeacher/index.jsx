@@ -1,109 +1,101 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ApplyTeacher.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { acceptApplication, rejectApplication } from '../../../redux/slices/applicationsSlice';
+import { useDispatch } from 'react-redux';
+import { rejectApplication, removeApplication } from '../../../redux/slices/applicationsSlice';
 import { addCourse } from '../../../redux/slices/coursesSlice';
+import CourseSettingsModal from '../../teacherComponents/CourseSettingsModal';
 
-const ApplyTeacher = ({ applicationId }) => {
+const ApplyTeacher = ({ application }) => {
   const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [courseData, setCourseData] = useState(null);
 
-  // Получаем конкретную заявку из хранилища
-  const application = useSelector((state) =>
-    state.applications.items.find((app) => app.id === applicationId),
-  );
+  const handleAcceptClick = () => {
+    setCourseData({
+      id: application.id,
+      title: application.title || application.subject || '',
+      description: application.description || '',
+      group: application.group || '',
+      date: application.date || '',
+      place: '',
+      status: 'active',
+    });
+    setIsModalOpen(true);
+  };
 
-  // Если заявка не найдена
-  if (!application) {
-    return (
-      <div className={styles.root}>
-        <div className={styles.error}>Заявка не найдена</div>
-      </div>
-    );
-  }
+  const handleModalSave = (updatedCourse) => {
+    setIsModalOpen(false);
+    dispatch(addCourse(updatedCourse)); // Добавляем курс
+  };
 
-  const handleAccept = () => {
-    dispatch(acceptApplication(application.id));
-
-    dispatch(
-      addCourse({
-        id: application.id,
-        title: application.title || application.subject,
-        description: application.description,
-        group: application.group,
-        date: application.date,
-        status: 'active',
-      }),
-    );
+  const handleModalCancel = () => {
+    setIsModalOpen(false);
   };
 
   const handleReject = () => {
-    dispatch(rejectApplication(application.id));
+    if (window.confirm('Вы уверены, что хотите отклонить эту заявку?')) {
+      dispatch(rejectApplication(application.id));
+    }
   };
 
-  // Проверяем статус заявки
-  const isPending = application.status === 'pending';
-
   return (
-    <div className={styles.root}>
-      <div className={styles.title}>Информация о заявке</div>
+    <div className={styles.card}>
+      <h3 className={styles.cardTitle}>Информация о заявке</h3>
 
-      <div className={styles.titleInfo}>
-        <div className={styles.id}>
-          <div className={styles.idTitle}>ID заявки:</div>
-          <div className={styles.idText}>{application.id}</div>
+      <div className={styles.cardSection}>
+        <div className={styles.infoRow}>
+          <span className={styles.infoLabel}>ID заявки:</span>
+          <span className={styles.infoValue}>{application.id}</span>
         </div>
-        <div className={styles.status}>
-          <div className={styles.statusTitle}>Статус:</div>
-          <div className={styles.statusText}>
-            {application.status === 'pending' && 'На рассмотрении'}
-            {application.status === 'accepted' && 'Принята'}
-            {application.status === 'rejected' && 'Отклонена'}
-          </div>
+        <div className={styles.infoRow}>
+          <span className={styles.infoLabel}>Статус:</span>
+          <span className={styles.infoValue}>На рассмотрении</span>
         </div>
       </div>
 
-      <div className={styles.details}>
-        <div className={styles.detailsTitle}>Детали</div>
+      <div className={styles.cardSection}>
+        <h4 className={styles.sectionTitle}>Детали</h4>
 
-        <div className={styles.event}>
-          <div className={styles.eventTitle}>Название:</div>
-          <div className={styles.eventText}>{application.title || application.subject}</div>
+        <div className={styles.infoRow}>
+          <span className={styles.infoLabel}>Название:</span>
+          <span className={styles.infoValue}>{application.title || application.subject}</span>
         </div>
 
         {application.description && (
-          <div className={styles.description}>
-            <div className={styles.descriptionTitle}>Описание:</div>
-            <div className={styles.descriptionText}>{application.description}</div>
+          <div className={styles.infoColumn}>
+            <span className={styles.infoLabel}>Описание:</span>
+            <span className={styles.infoValue}>{application.description}</span>
           </div>
         )}
 
-        <div className={styles.group}>
-          <div className={styles.groupTitle}>Группа:</div>
-          <div className={styles.groupText}>{application.group}</div>
+        <div className={styles.infoRow}>
+          <span className={styles.infoLabel}>Группа:</span>
+          <span className={styles.infoValue}>АВТ-412</span>
         </div>
 
-        <div className={styles.time}>
-          <div className={styles.timeTitle}>Дата:</div>
-          <div className={styles.timeText}>
-            {new Date(application.date).toLocaleDateString('ru-RU')}
-          </div>
+        <div className={styles.infoRow}>
+          <span className={styles.infoLabel}>Дата:</span>
+          <span className={styles.infoValue}>
+            {application.date ? new Date(application.date).toLocaleDateString('ru-RU') : '-'}
+          </span>
         </div>
       </div>
 
-      {isPending && (
-        <div className={styles.buttons}>
-          <div className={styles.accept}>
-            <button onClick={handleAccept} className={styles.acceptItem}>
-              Принять
-            </button>
-          </div>
+      <div className={styles.actions}>
+        <button onClick={handleAcceptClick} className={styles.acceptButton}>
+          Принять
+        </button>
+        <button onClick={handleReject} className={styles.rejectButton}>
+          Отклонить
+        </button>
+      </div>
 
-          <div className={styles.reject}>
-            <button onClick={handleReject} className={styles.rejectItem}>
-              Отклонить
-            </button>
-          </div>
-        </div>
+      {isModalOpen && (
+        <CourseSettingsModal
+          courseData={courseData}
+          onSave={handleModalSave}
+          onCancel={handleModalCancel}
+        />
       )}
     </div>
   );

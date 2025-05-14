@@ -1,51 +1,384 @@
 @import '../../scss/variables.scss';
 
-.root {
-  width: 100%;
+.calendarWrapper {
+  font-family: 'Arial', sans-serif;
+  border-radius: 12px;
   border: 1px solid $borderClr;
-  border-radius: 10px;
-  overflow: scroll;
   background: $elemBg;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 16px;
+  position: relative; // Для позиционирования фильтров
 }
 
-.upSection {
+.calendarHeader {
   display: flex;
-  padding: 15px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
   border-bottom: 1px solid $borderClr;
 }
 
-.dateBlock {
+.dateNavigation {
   display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  border-radius: 6px;
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.currentWeek {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.filterButton {
+  background: none;
+  border: 1px solid $borderClr;
+  cursor: pointer;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.2s;
+  gap: 6px;
+  font-size: 14px;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: darken($borderClr, 10%);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Стили для попапа фильтров */
+.filterPopup {
+  position: absolute;
+  top: 60px;
+  right: 16px;
+  background: $elemBg;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  z-index: 100;
+  width: 240px;
+  border: 1px solid $borderClr;
+  animation: fadeIn 0.2s ease-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    width: 16px;
+    height: 16px;
+    background: $elemBg;
+    transform: rotate(45deg);
+    border-top: 1px solid $borderClr;
+    border-left: 1px solid $borderClr;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filterGroup {
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  label {
+    display: inline-flex; // Изменено с flex на inline-flex
+    align-items: center; // Выравнивание по центру по вертикали
+    font-size: 14px;
+    cursor: pointer;
+    gap: 8px;
+    line-height: 1; // Убираем лишний межстрочный интервал
+    vertical-align: middle; // Дополнительное выравнивание
+  }
+}
+
+.filterSelect {
   width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid $borderClr;
+  background: $elemBg;
+  font-size: 14px;
+  margin-top: 8px;
+  transition: border-color 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+
+  &:focus {
+    outline: none;
+  }
 }
 
-.date {
-  margin: 0 10px;
+/* Стили для чекбоксов */
+input[type='checkbox'] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid $borderClr;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  outline: none;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  &:hover {
+    border-color: lighten($btnColor, 15%);
+  }
+
+  &:focus {
+    border-color: $btnColor;
+    box-shadow: 0 0 0 3px rgba($btnColor, 0.2);
+  }
+
+  &:checked {
+    background-color: $btnColor;
+    border-color: $btnColor;
+    animation: checkAnim 0.4s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 12px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg) scale(1);
+      top: 0;
+      left: 6px;
+      opacity: 0;
+      animation: checkmarkAnim 0.3s 0.1s ease-out forwards;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: $borderClr;
+  }
 }
 
-.main {
+@keyframes checkAnim {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes checkmarkAnim {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+  }
+}
+
+/* Для лучшей интеграции с лейблом */
+.filterGroup label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.3s;
+
+  &:hover {
+    color: darken(black, 15%);
+
+    input[type='checkbox'] {
+      border-color: lighten($btnColor, 10%);
+    }
+  }
+}
+
+.calendarGrid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   background-color: $borderClr;
   gap: 1px;
 }
 
-.monday,
-.tuesday,
-.wednesday,
-.thursday,
-.friday,
-.saturday,
-.sunday {
+.dayColumn {
   background: $elemBg;
+  min-height: 300px;
 }
 
 .dayHeader {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid lighten($borderClr, 10%);
+}
+
+.dayName {
+  display: block;
+  font-size: 14px;
+  color: $secondTextClr;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.dayNumber {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.lessonsList {
+  padding: 8px;
   display: flex;
-  align-items: center;
   flex-direction: column;
-  padding-bottom: 10px;
-  border-bottom: 1px solid lighten($borderClr, 20%);
-  border-bottom: 1px solid $borderClr;
+  gap: 8px;
+}
+
+.noLessons {
+  color: $secondTextClr;
+  font-size: 14px;
+  text-align: center;
+  padding: 16px 0;
+}
+
+/* Стиль для текущего дня */
+.today {
+  .dayName {
+    color: $btnColor;
+    font-weight: 600;
+  }
+
+  .dayNumber {
+    display: inline;
+    background: $btnColor;
+    border-radius: 50%;
+    padding: 4px 8px;
+    color: white;
+  }
+}
+
+/* Адаптация для планшетов */
+@media (max-width: 1024px) {
+  .calendarGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Адаптация для небольших планшетов */
+@media (max-width: 768px) {
+  .calendarGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .filterPopup {
+    width: 200px;
+    right: 10px;
+  }
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 576px) {
+  .calendarWrapper {
+    margin: 8px;
+    border-radius: 8px;
+  }
+
+  .calendarGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .dayColumn {
+    border-bottom: 1px solid $borderClr;
+  }
+
+  .calendarHeader {
+    padding: 8px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .dateNavigation {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .currentWeek {
+    font-size: 14px;
+  }
+
+  .filterButton {
+    width: 100%;
+    justify-content: center;
+    border: none;
+  }
+
+  .filterPopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 300px;
+    right: auto;
+    animation: none;
+
+    &::before {
+      display: none;
+    }
+  }
 }

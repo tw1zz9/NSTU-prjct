@@ -1,13 +1,20 @@
 import React, { useEffect } from 'react';
+import '../../scss/app.scss';
 import logo from '../../assets/img/logo.png';
 import ava from '../../assets/img/ava.jpg';
 import styles from './Header.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSidePanel } from '../../redux/slices/sidePanelSlice';
 
+import { loginTeacher, loginStudent } from '../../redux/slices/userSlice';
+import { useNavigate } from 'react-router-dom';
+
 const Header = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const isOpen = useSelector((state) => state.sidePanel.isOpen);
+  const { role } = useSelector((state) => state.user);
 
   useEffect(() => {
     document.body.style.overflowX = 'visible';
@@ -16,8 +23,17 @@ const Header = () => {
     };
   }, []);
 
+  const handleToggleLogin = () => {
+    if (role === 'teacher') {
+      dispatch(loginStudent());
+    } else {
+      dispatch(loginTeacher());
+    }
+    navigate('/home');
+  };
+
   return (
-    <header className={styles.root}>
+    <header className={`${styles.root} header`}>
       <div className={styles.leftBlock}>
         <button
           onClick={() => dispatch(toggleSidePanel())}
@@ -42,8 +58,8 @@ const Header = () => {
           <div className={styles.logoText}>ExtraNETI</div>
         </div>
       </div>
-      <div className={styles.rightBlock}>
-        <img className={styles.ava} src={ava} alt="аватарка" />
+      <div onClick={handleToggleLogin} className={styles.rightBlock}>
+        {role === 'teacher' ? 'Войти от лица студента' : 'Войти от лица преподавателя'}
       </div>
     </header>
   );

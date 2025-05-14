@@ -9,9 +9,8 @@ const Applications = () => {
   const { role, group } = useSelector((state) => state.user);
   const applications = useSelector((state) => state.applications.items);
 
-  // Для отладки
   console.log('Current applications:', applications);
-  console.log('User group:', group);
+  console.log('User role and group:', { role, group });
 
   return (
     <MainLayout className="root">
