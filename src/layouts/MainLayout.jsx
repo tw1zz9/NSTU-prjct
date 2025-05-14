@@ -13,7 +13,7 @@ const MainLayout = ({ children }) => {
       <Header className="header" />
       <SidePanel isSidePanelOpen={isSidePanelOpen} />
       <main
-        className="main_layout"
+        className="mainLayout"
         isSidePanelOpen={isSidePanelOpen}
         style={{ marginLeft, transition: `.5s` }}
       >

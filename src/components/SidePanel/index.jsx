@@ -94,17 +94,26 @@ const menuItems = [
     path: 'calendar',
     text: 'Календарь',
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <g
-          fill="none"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.7"
+      <svg className="blockSvg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="24" height="24" rx="8" fill="none" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="#000000"
+          x="0"
+          y="0"
+          width="24"
+          height="24"
         >
-          <circle cx="12" cy="12" r="3" />
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83a2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33a1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2a2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0a2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2a2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83a2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2a2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0a2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-        </g>
+          <path
+            fill="none"
+            stroke="#000000"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M17.25 4.75H6.75a3.5 3.5 0 0 0-3.5 3.5v9.5a3.5 3.5 0 0 0 3.5 3.5h10.5a3.5 3.5 0 0 0 3.5-3.5v-9.5a3.5 3.5 0 0 0-3.5-3.5m-14 4.5h17.5M7.361 4.75v-2m9.25 2v-2"
+          />
+        </svg>
       </svg>
     ),
     availableFor: ['teacher', 'student'],
@@ -140,7 +149,10 @@ const SidePanel = ({ isSidePanelOpen }) => {
   };
 
   return (
-    <div style={{ transform: isSidePanelOpen ? `translateX(-100%)` : '' }} className={styles.root}>
+    <div
+      style={{ transform: isSidePanelOpen ? `translateX(-100%)` : '' }}
+      className={`${styles.root} ${isSidePanelOpen ? styles.open : ''}`}
+    >
       {menuItems.map((item) => (
         <Link key={item.id} to={`/${item.path}`} onClick={() => handleSelect(item.id)}>
           <div className={`${styles[item.id]} ${selected === item.id ? styles.active : ''}`}>

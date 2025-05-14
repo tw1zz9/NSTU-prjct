@@ -1,12 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
-import React, { useState } from 'react';
+import React from 'react';
 import './scss/app.scss';
 import { Navigate } from 'react-router-dom';
 
-import LoginPage from './pages/LoginPage.jsx';
-
+import LoginPage from './pages/LoginPage';
+import Entry from './pages/Entry/index.jsx';
 import { useSelector } from 'react-redux';
-
 import PrivateRoute from './components/PrivateRoute.jsx';
 import Applications from './pages/Applications/index.jsx';
 import Home from './pages/Home/index.jsx';
@@ -21,7 +20,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<Navigate to="/entry" replace />} />
+        <Route path="/entry" element={<Entry />} />
         <Route path="/login" element={<LoginPage />} />
 
         <Route element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
@@ -33,7 +33,7 @@ function App() {
           <Route path="/settings" element={<Settings />} />
         </Route>
 
-        <Route path="*" element={<Navigate to="/login" />} />
+        <Route path="*" element={<Navigate to="/entry" />} />
       </Routes>
     </div>
   );

@@ -36,7 +36,7 @@ const CourseModal = ({ course, onSave, onCancel }) => {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modal}>
-        <h3>Редактирование курса</h3>
+        <h3>Редактирование мероприятия</h3>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
             <label>Предмет:</label>

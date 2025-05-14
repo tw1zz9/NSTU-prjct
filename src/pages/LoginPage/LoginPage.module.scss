@@ -1,0 +1,154 @@
+@import '../../scss/variables.scss';
+
+.loginPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: $generalBg;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+}
+
+.loginContainer {
+  background: $elemBg;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba($borderClr, 0.3);
+
+  h1 {
+    color: $primaryTextClr;
+    margin-bottom: 30px;
+    font-size: 22px;
+    font-weight: 600;
+  }
+}
+
+.loginButton {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba($btnColor, 0.15);
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba($btnColor, 0.2);
+  }
+}
+
+.teacherButton {
+  background: $btnColor;
+  color: white;
+  box-shadow: 0 4px 12px rgba($btnColor, 0.2);
+
+  &:hover {
+    background: darken($btnColor, 8%);
+  }
+}
+
+.studentButton {
+  background: $practice;
+  color: white;
+  box-shadow: 0 4px 12px rgba($practice, 0.2);
+
+  &:hover {
+    background: darken($practice, 8%);
+  }
+}
+
+.loginDivider {
+  margin: 20px 0;
+  position: relative;
+  color: $secondTextClr;
+  font-size: 14px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30%;
+    height: 1px;
+    background: rgba($borderClr, 0.5);
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logoItem {
+  width: 40px;
+}
+
+.logo {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}

@@ -17,12 +17,12 @@ const StudentApplicationCard = ({ application }) => {
 
   return (
     <div className={styles.card}>
-      <h3 className={styles.cardTitle}>{application.title}</h3>
+      <h3 className={styles.cardTitle}>{application.subject}</h3>
 
       <div className={styles.cardDetails}>
         <div className={styles.detailItem}>
           <span className={styles.detailLabel}>Группа:</span>
-          <span>{application.group}</span>
+          <span>АВТ-412</span>
         </div>
 
         <div className={styles.detailItem}>

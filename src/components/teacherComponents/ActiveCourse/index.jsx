@@ -1,7 +1,10 @@
 import React from 'react';
 import styles from './ActiveCourse.module.scss';
 
-const ActiveCourse = ({ id, name, group, time, place, onEdit, onEnd }) => {
+import { useSelector } from 'react-redux';
+
+const ActiveCourse = ({ id, name, group, date, place, onEdit, onEnd }) => {
+  const { role } = useSelector((state) => state.user);
   const formatDateTime = (dateTime) => {
     if (!dateTime) return 'Не указано';
 
@@ -9,10 +12,10 @@ const ActiveCourse = ({ id, name, group, time, place, onEdit, onEnd }) => {
       const date = new Date(dateTime);
       return date.toLocaleString('ru-RU', {
         weekday: 'short',
-        hour: '2-digit',
-        minute: '2-digit',
         day: 'numeric',
         month: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
       });
     } catch {
       return dateTime;
@@ -21,40 +24,42 @@ const ActiveCourse = ({ id, name, group, time, place, onEdit, onEnd }) => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.title}>Информация о мероприятии</div>
+      <h3 className={styles.title}>Информация о мероприятии</h3>
 
       <div className={styles.details}>
-        <div className={styles.detailsTitle}>Детали</div>
+        <h4 className={styles.detailsTitle}>Детали</h4>
 
-        <div className={styles.lesson}>
-          <div className={styles.lessonTitle}>Предмет:</div>
-          <div className={styles.lessonItem}>{name}</div>
+        <div className={styles.detailRow}>
+          <span className={styles.detailLabel}>Предмет:</span>
+          <span className={styles.detailValue}>{name}</span>
         </div>
 
-        <div className={styles.group}>
-          <div className={styles.groupTitle}>Группа:</div>
-          <div className={styles.groupItem}>{group}</div>
+        <div className={styles.detailRow}>
+          <span className={styles.detailLabel}>Группа:</span>
+          <span className={styles.detailValue}>{group}</span>
         </div>
 
-        <div className={styles.date}>
-          <div className={styles.dateTitle}>Дата и время:</div>
-          <div className={styles.dateItem}>{formatDateTime(time)}</div>
+        <div className={styles.detailRow}>
+          <span className={styles.detailLabel}>Дата и время:</span>
+          <span className={styles.detailValue}>{formatDateTime(date)}</span>
         </div>
 
-        <div className={styles.place}>
-          <div className={styles.placeTitle}>Место:</div>
-          <div className={styles.placeItem}>{place}</div>
+        <div className={styles.detailRow}>
+          <span className={styles.detailLabel}>Место:</span>
+          <span className={styles.detailValue}>{place}</span>
         </div>
       </div>
 
-      <div className={styles.buttons}>
-        <button className={styles.buttonEdit} onClick={() => onEdit(id)}>
-          Редактировать
-        </button>
-        <button className={styles.buttonEnd} onClick={() => onEnd(id)}>
-          Закончить
-        </button>
-      </div>
+      {role === 'teacher' && (
+        <div className={styles.buttons}>
+          <button className={`${styles.button} ${styles.buttonEdit}`} onClick={() => onEdit(id)}>
+            Редактировать
+          </button>
+          <button className={`${styles.button} ${styles.buttonEnd}`} onClick={() => onEnd(id)}>
+            Закончить
+          </button>
+        </div>
+      )}
     </div>
   );
 };

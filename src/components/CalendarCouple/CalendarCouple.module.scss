@@ -1,41 +1,67 @@
 @import '../../scss/variables.scss';
 
-.root {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 200px;
-  height: 150px;
-  padding: 5px;
-  border-bottom: 1px solid $borderClr;
+.coupleCard {
+  padding: 12px;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 8px;
+  border-left: 5px solid $borderClr;
 }
 
-.lecture {
-  border-left: 10px solid $lecture;
+.coupleHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
 
-  .time,
-  .type {
+.coupleType {
+  font-weight: 600;
+}
+
+.coupleNumber {
+  color: $secondTextClr;
+}
+
+.coupleName {
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.coupleDetails {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: $secondTextClr;
+}
+
+/* Стили для разных типов пар */
+.лекция {
+  border-left-color: $lecture;
+
+  .coupleType {
     color: $lecture;
-    font-weight: bold;
   }
 }
 
-.practice {
-  border-left: 10px solid $practice;
+.практика {
+  border-left-color: $practice;
 
-  .time,
-  .type {
+  .coupleType {
     color: $practice;
-    font-weight: bold;
   }
 }
 
-.upper {
-  display: flex;
-  justify-content: space-between;
-}
+/* Адаптация для мобильных */
+@media (max-width: 576px) {
+  .coupleCard {
+    padding: 10px;
+  }
 
-.lower {
-  display: flex;
-  justify-content: space-between;
+  .coupleName {
+    font-size: 14px;
+  }
 }
