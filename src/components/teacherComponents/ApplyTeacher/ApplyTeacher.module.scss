@@ -1,0 +1,115 @@
+@import '../../../scss/variables.scss';
+
+.card {
+  border: 1px solid $borderClr;
+  border-radius: 10px;
+  padding: 20px;
+  background: $elemBg;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: $primaryTextClr;
+  font-weight: 600;
+}
+
+.cardSection {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid lighten($borderClr, 5%);
+
+  &:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: $primaryTextClr;
+  font-weight: 500;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.infoLabel {
+  color: $secondTextClr;
+  margin-right: 10px;
+}
+
+.infoValue {
+  color: $primaryTextClr;
+  text-align: right;
+  word-break: break-word;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+
+  button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+}
+
+.acceptButton {
+  background: $btnColor;
+  color: white;
+
+  &:hover {
+    background: darken($btnColor, 10%);
+  }
+}
+
+.rejectButton {
+  background: $btnColor;
+  color: white;
+
+  &:hover {
+    background: darken($btnColor, 10%);
+  }
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 576px) {
+  .card {
+    padding: 15px;
+  }
+
+  .infoRow {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .infoValue {
+    text-align: left;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

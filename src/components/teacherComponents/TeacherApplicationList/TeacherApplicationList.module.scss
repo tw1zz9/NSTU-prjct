@@ -1,0 +1,43 @@
+@import '../../../scss/variables.scss';
+
+.container {
+  padding: 20px;
+}
+
+.title {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  margin-bottom: 20px;
+  color: $primaryTextClr;
+  font-weight: bold;
+}
+
+.loading,
+.empty {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.1rem;
+  color: $secondTextClr;
+}
+
+.applicationsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .applicationsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+}

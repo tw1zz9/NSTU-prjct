@@ -1,0 +1,104 @@
+@import '../../../scss/variables.scss';
+
+.card {
+  background: $generalBg; // #f8faff
+  border: 1px solid $borderClr; // #ced4da
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  cursor: default;
+}
+
+.cardTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: $primaryTextClr;
+  margin: 0;
+  word-break: break-word;
+}
+
+.cardDetails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  font-size: 1rem;
+  color: $secondTextClr;
+}
+
+.detailItem {
+  display: flex;
+  gap: 8px;
+  min-width: 140px;
+  align-items: center;
+
+  .detailLabel {
+    font-weight: 600;
+    color: $primaryTextClr;
+    min-width: 70px;
+  }
+}
+
+.status-pending {
+  color: $lecture; // #fa0
+  font-weight: 700;
+}
+
+.status-accepted {
+  color: $practice; // #00cc73
+  font-weight: 700;
+}
+
+.status-rejected {
+  color: $btnColor; // #f7234c
+  font-weight: 700;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: $primaryTextClr;
+  background: $elemBg; // #fcfdff
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1px solid $borderClr;
+  white-space: pre-wrap;
+  max-height: 140px;
+  overflow-y: auto;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+/* Адаптивность */
+
+@media (max-width: 600px) {
+  .card {
+    padding: 16px 18px;
+  }
+
+  .cardTitle {
+    font-size: 1.2rem;
+  }
+
+  .cardDetails {
+    gap: 16px;
+    font-size: 0.9rem;
+  }
+
+  .detailItem {
+    min-width: 120px;
+
+    .detailLabel {
+      min-width: 60px;
+    }
+  }
+
+  .description {
+    font-size: 0.9rem;
+    max-height: 110px;
+    padding: 12px 14px;
+  }
+}
