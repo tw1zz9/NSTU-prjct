@@ -151,19 +151,3 @@
 .main_layout {
   padding: 20px;
 }
-
-.loginPage {
-  background: $elemBg;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.loginPage button {
-  padding: 12px 24px;
-  font-size: 16px;
-  min-width: 200px;
-}
