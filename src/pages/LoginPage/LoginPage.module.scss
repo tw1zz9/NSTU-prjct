@@ -56,7 +56,7 @@
   justify-content: center;
   gap: 10px;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 
   &::after {
     content: '';
