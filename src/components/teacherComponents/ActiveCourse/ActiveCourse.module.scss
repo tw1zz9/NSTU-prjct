@@ -1,4 +1,4 @@
-@import '../../scss/variables.scss';
+@import '../../../scss/variables.scss';
 
 .root {
   border-radius: 10px;
@@ -17,12 +17,12 @@
 }
 
 .details {
-  width: 350px;
-  height: 300px;
+  width: 370px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   padding: 15px;
+  padding-bottom: 30px;
   background: $generalBg;
   border: 1px solid $borderClr;
 }
@@ -49,4 +49,16 @@
 .buttons {
   display: flex;
   justify-content: space-between;
+  margin-top: 40px;
+  gap: 30px;
+
+  * {
+    width: 50%;
+    background: $btnColor;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 10px 20px;
+  }
 }

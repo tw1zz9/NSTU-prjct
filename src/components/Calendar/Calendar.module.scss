@@ -1,0 +1,51 @@
+@import '../../scss/variables.scss';
+
+.root {
+  width: 100%;
+  border: 1px solid $borderClr;
+  border-radius: 10px;
+  overflow: scroll;
+  background: $elemBg;
+}
+
+.upSection {
+  display: flex;
+  padding: 15px;
+  border-bottom: 1px solid $borderClr;
+}
+
+.dateBlock {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.date {
+  margin: 0 10px;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: $borderClr;
+  gap: 1px;
+}
+
+.monday,
+.tuesday,
+.wednesday,
+.thursday,
+.friday,
+.saturday,
+.sunday {
+  background: $elemBg;
+}
+
+.dayHeader {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 10px;
+  border-bottom: 1px solid lighten($borderClr, 20%);
+  border-bottom: 1px solid $borderClr;
+}

@@ -1,10 +1,11 @@
 @import './variables.scss';
 
 .App {
-  overflow-x: hidden;
   a {
     text-decoration: none;
   }
+
+  font-family: 'Mulish', sans-serif;
 }
 
 * {
@@ -26,4 +27,8 @@ body {
 .blockSvg {
   width: 30px;
   height: 30px;
+}
+
+.layout {
+  position: relative;
 }

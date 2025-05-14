@@ -1,0 +1,36 @@
+.card {
+  &Title {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #222;
+  }
+}
+
+.detailItem {
+  display: flex;
+  margin-bottom: 8px;
+
+  .detailLabel {
+    font-weight: bold;
+    margin-right: 8px;
+    min-width: 80px;
+  }
+}
+
+.description {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.status {
+  &-pending {
+    color: #f39c12;
+  }
+  &-accepted {
+    color: #27ae60;
+  }
+  &-rejected {
+    color: #e74c3c;
+  }
+}

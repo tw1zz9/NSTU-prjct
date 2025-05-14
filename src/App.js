@@ -1,42 +1,39 @@
 import { Routes, Route } from 'react-router-dom';
 import React, { useState } from 'react';
 import './scss/app.scss';
+import { Navigate } from 'react-router-dom';
 
-import TeacherHome from './pages/TeacherHome';
-import TeacherApplications from './pages/TeacherApplications';
-import TeacherActiveCourses from './pages/TeacherActiveCourses.jsx';
-import TeacherCreateEvent from './pages/TeacherCreateEvent.jsx';
-import TeacherSettings from './pages/TeacherSettings.jsx';
+import LoginPage from './pages/LoginPage.jsx';
 
-import Header from './components/Header';
-import SidePanel from './components/SidePanel';
+import { useSelector } from 'react-redux';
+
+import PrivateRoute from './components/PrivateRoute.jsx';
+import Applications from './pages/Applications/index.jsx';
+import Home from './pages/Home/index.jsx';
+import ActiveCourses from './pages/ActiveCourses/index.jsx';
+import CreateEvent from './pages/CreateEvent/index.jsx';
+import Calendar from './pages/Calendar';
+import Settings from './pages/Settings/index.jsx';
 
 function App() {
-  const [isSidePanelOpen, setIsSidePanelOpen] = useState(true);
-
-  const handleClickSidePanel = () => {
-    setIsSidePanelOpen(!isSidePanelOpen);
-  };
+  const { isAuthenticated } = useSelector((state) => state.user);
 
   return (
     <div className="App">
-      <Header onClickSidePanel={handleClickSidePanel} />
-      <SidePanel isSidePanelOpen={isSidePanelOpen} />
       <Routes>
-        <Route path="/" element={<TeacherHome isSidePanelOpen={isSidePanelOpen} />} />
-        <Route
-          path="/applications"
-          element={<TeacherApplications isSidePanelOpen={isSidePanelOpen} />}
-        />
-        <Route
-          path="/active-courses"
-          element={<TeacherActiveCourses isSidePanelOpen={isSidePanelOpen} />}
-        />
-        <Route
-          path="/create-event"
-          element={<TeacherCreateEvent isSidePanelOpen={isSidePanelOpen} />}
-        />
-        <Route path="/settings" element={<TeacherSettings isSidePanelOpen={isSidePanelOpen} />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<LoginPage />} />
+
+        <Route element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/applications" element={<Applications />} />
+          <Route path="/active-courses" element={<ActiveCourses />} />
+          <Route path="/create-event" element={<CreateEvent />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/settings" element={<Settings />} />
+        </Route>
+
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </div>
   );
